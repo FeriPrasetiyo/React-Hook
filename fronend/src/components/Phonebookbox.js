@@ -3,8 +3,28 @@ import PhonebookList from '../containers/PhonebookList'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Phonebookseach from '../containers/Phonebookseach'
+import { useState } from 'react'
 
-export default function Phonebook() {
+export default function Phonebook(props) {
+    const [add, setAdd] = useState({
+        isAdd: false
+    });
+
+    const handleAdd = () => {
+        console.log('masuk')
+        setAdd({
+            isAdd: true
+        })
+    }
+
+    const handleCenceladd = () => {
+        console.log('masuk cencel')
+        setAdd({
+            isAdd: false
+        })
+    }
+
+
     return (
         <div className="container-md" >
             <div className="row">
@@ -19,7 +39,7 @@ export default function Phonebook() {
             <br />
             <div className='row'>
                 <div className='col'>
-                    <button type="button" className='btn btn-primary'>
+                    <button type="button" className='btn btn-primary' onClick={handleAdd}>
                         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                         <span>add</span>
                     </button>
@@ -28,7 +48,7 @@ export default function Phonebook() {
             <br />
             <div className='row'>
                 <div className='col'>
-                    <PhonebookForm />
+                    {add.isAdd ? <PhonebookForm cencelAdd={handleCenceladd} /> : false}
                 </div>
             </div>
             <br></br>

@@ -134,7 +134,7 @@ export const loadmoreUser = () => async (dispatch, getSate) => {
             })
         }
     } catch (err) {
-        dispatch(loadmoreUserFailure())
+        dispatch(loadmoreUserFailure(err))
     }
 }
 
@@ -155,7 +155,6 @@ export const searchUser = (query) => async (dispatch, getSate) => {
             ...query,
             page: 1
         }
-        console.log(params, 'ini params')
         request.get('users', { params }).then((res) => {
             params = {
                 ...params,
@@ -166,7 +165,7 @@ export const searchUser = (query) => async (dispatch, getSate) => {
             console.log(err)
         })
     } catch (err) {
-        dispatch(searchUserFailure())
+        dispatch(searchUserFailure(err))
     }
 }
 
